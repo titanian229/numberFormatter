@@ -4,6 +4,7 @@
   "description": "Formatter for numbers inside HTML files.",
   "main": "numberFormatter.js",
   "scripts": {
+    "start": "node numberFormatter.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
