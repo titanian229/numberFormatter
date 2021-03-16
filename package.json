@@ -1,0 +1,22 @@
+{
+  "name": "numberformatter",
+  "version": "1.0.0",
+  "description": "Formatter for numbers inside HTML files.",
+  "main": "numberFormatter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/titanian229/numberFormatter.git"
+  },
+  "author": "James Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/titanian229/numberFormatter/issues"
+  },
+  "homepage": "https://github.com/titanian229/numberFormatter#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
