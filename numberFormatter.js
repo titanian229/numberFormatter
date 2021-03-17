@@ -80,7 +80,7 @@ async function mainApp() {
         let replacementLine = line;
 
         //Anti patterns for BAF3M
-        if (line.toLowerCase().includes('invoice') || line.toLowerCase().matches(/cheque \d\d\d/g)) {
+        if (line.toLowerCase().includes('invoice') || line.toLowerCase().match(/cheque \d\d\d/g) !== null) {
             newFileContents.push(line);
             continue;
         }
