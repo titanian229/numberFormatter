@@ -44,7 +44,7 @@ async function mainApp() {
 
     let enteredHTMLBody = false;
     let enteredSkipRegion = false;
-    let foundMatch = false;
+    let fixesApplied = 0;
 
     for (let j = 0; j < fileContents.length; j++) {
         const line = fileContents[j];
@@ -85,16 +85,17 @@ async function mainApp() {
             continue;
         }
 
-        if (line.search(/(\d{4,})|(\d+ \d{3} \d{3})|(\d+ \d{3})/g) !== -1) {
+        if (line.search(/(?<=>| |\t|\n|\r|\$)(\d{4,})|(?<=>| |\t|\n|\r|\$)(\d+( \d{3})+)/g) !== -1) {
             //note SIMPLIFY THIS REGEX, THIS IS FOR TESTING
             console.log(j + 1, line.trim());
             // const matches = Array.from(line.matchAll(/(\d{4,})|(\d+ \d{3} \d{3})|(\d+ \d{3})/g));
+            //REGEX TODO: Add in antipattern for leading 0, leading character that isn't a space, newline, or closing tag (preventing 1.123123132, and such)
 
-            const matches = line.match(/(\d{4,})|(\d+ \d{3} \d{3})|(\d+ \d{3})/g);
+            const matches = line.match(/(?<=>| |\t|\n|\r|\$)(\d{4,})|(?<=>| |\t|\n|\r|\$)(\d+( \d{3})+)/g);
 
             for (let index = 0; index < matches.length; index++) {
                 const match = matches[index];
-                if (!foundMatch) foundMatch = true;
+                fixesApplied += 1;
                 // CASE Number with spaces present, changing to nbsp
                 let replacementNumber = match.replace(' ', '&nbsp;');
                 // CASE Number without spaces, adding nbsp
@@ -113,11 +114,13 @@ async function mainApp() {
     }
 
     //If no matches in entire file found
-    if (!foundMatch) {
+    if (fixesApplied === 0) {
         console.log(
             "It looks like there are no numbers in need of formatting in your file, or they're hiding next to some antipatterns."
         );
         return;
+    } else {
+        console.log(`A total of ${fixesApplied} numbers were reformatted.`)
     }
 
     // Final confirmation
