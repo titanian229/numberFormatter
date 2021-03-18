@@ -85,7 +85,7 @@ async function mainApp() {
             continue;
         }
 
-        if (line.search(/(?<=>| |\t|\n|\r|\$)(\d{4,})|(?<=>| |\t|\n|\r|\$)(\d+( \d{3})+)/g) !== -1) {
+        if (line.search(/(?<=>| |\t|\n|\r|\$|^)(\d{4,})|(?<=>| |\t|\n|\r|\$|^)(\d+( \d{3})+)/g) !== -1) {
             //note SIMPLIFY THIS REGEX, THIS IS FOR TESTING
             console.log(j + 1, line.trim());
             // const matches = Array.from(line.matchAll(/(\d{4,})|(\d+ \d{3} \d{3})|(\d+ \d{3})/g));
